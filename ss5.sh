@@ -60,11 +60,8 @@ is_root() {
         echo -e "${OK} ${GreenBG} 当前用户是root用户，进入安装流程 ${Font}"
         sleep 3
     else
-        # echo -e "${Error} ${RedBG} 当前用户不是root用户，请切换到使用 'sudo -i' 切换到root用户后重新执行脚本 ${Font}"
-        # exit 1
-        echo -e "${OK} ${GreenBG} 当前用户不是root用户，切换用户 ${Font}"
-        sudo -i
-        sleep 3
+        echo -e "${Error} ${RedBG} 当前用户不是root用户，请切换到使用 'sudo -i' 切换到root用户后重新执行脚本 ${Font}"
+        exit 1
     fi
 }
 
@@ -94,7 +91,7 @@ sic_optimization() {
 }
 
 port_set() {
-        # read -rp "请设置连接端口（默认:1080）:" port
+        read -rp "请设置连接端口（默认:1080）:" port
         [[ -z ${port} ]] && port="1080"
 }
 
@@ -120,10 +117,10 @@ bbr_install() {
 }
 
 user_set() {
-	# read -rp  "请设置ss5账户。默认:admin）:" user
-	[[ -z ${user} ]] && user="huowei"
-	# read -rp "请设置ss5连接密码。默认:admin）:" passwd
-	[[ -z ${passwd} ]] && passwd="huowei.c0m"
+	read -rp  "请设置ss5账户。默认:admin）:" user
+	[[ -z ${user} ]] && user="admin"
+	read -rp "请设置ss5连接密码。默认:admin）:" passwd
+	[[ -z ${passwd} ]] && passwd="admin"
 }
 
 install_ss5() {
@@ -275,8 +272,7 @@ menu() {
 
 
 
-    #read -rp "请输入数字：" menu_num
-    menu_num=1
+    read -rp "请输入数字：" menu_num
     case $menu_num in
     1)
         install
